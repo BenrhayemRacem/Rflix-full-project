@@ -46,7 +46,7 @@ const decryptPassword = require("../services/passwordDecryption");
                  }
                  else {
 
-                     const {success} = await userController.addJwtToUser(email,user.username,user._id);
+                     const {success} = await userController.addJwtToUser(email,user.isAdmin);
                      if(!success) {
                          res.send("error while logging in please try again").status(500)
                      }else{
