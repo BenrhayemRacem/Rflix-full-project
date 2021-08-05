@@ -1,6 +1,6 @@
 const commentValidator = require("../services/commentModelVerification");
 const commentModel = require("../models/commentModel");
-
+const getCommentsByMovieIdPipeline = require("../services/CommentsPipelineFn")
 
 
 class CommentController {
@@ -68,20 +68,36 @@ class CommentController {
             res.status(500).send(e);
         }
     }
-    static async getCommentByMovieId(req,res) {
+    static async getCommentsByMovieId(req,res) {
 
         const movieId = req.params.id;
+
          try {
-             const movieList =  await commentModel.find({"movie_id":  movieId}) ;
-             res.status(200).send(movieList);
+
+             const movieList = await commentModel.aggregate(getCommentsByMovieIdPipeline(movieId)).exec()
+
+               if( ! movieList.length<1) {
+                   res.status(200).send(movieList);
+               } else {
+                   res.status(404).send("no movie matched your search ");
+               }
+
 
          } catch (e) {
-             res.send(e);
+             res.status(500).send(e);
          }
 
     }
 
+
+
+
+
+
+
 }
+
+
 
 
 
