@@ -4,11 +4,15 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const authRouter = require("./routes/auth.route");
 const commentRouter = require("./routes/comment.route")
+const movieRouter = require("./routes/movie.route")
 const jwtVerify = require("./services/jwtVerify")
 
 
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
  app.use("/api/auth" , authRouter) ;
+app.use("/api/movie" , movieRouter) ;
  app.use("/api/comment" , jwtVerify, commentRouter)
 
 
