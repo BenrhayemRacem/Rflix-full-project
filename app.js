@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const authRouter = require("./routes/auth.route");
 const commentRouter = require("./routes/comment.route")
 const movieRouter = require("./routes/movie.route")
+const userRouter = require("./routes/user.route")
 const jwtVerify = require("./services/jwtVerify")
 
 
@@ -13,7 +14,8 @@ app.use(express.urlencoded({extended:true}));
 
  app.use("/api/auth" , authRouter) ;
 app.use("/api/movie" , movieRouter) ;
- app.use("/api/comment" , jwtVerify, commentRouter)
+ app.use("/api/comment" , jwtVerify, commentRouter) ;
+ app.use("/api/user" ,userRouter )
 
 
 
