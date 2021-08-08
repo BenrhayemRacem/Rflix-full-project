@@ -3,10 +3,10 @@ const joi = require("joi") ;
 const userSchema =  joi.object({
     username: joi.string().required() ,
     email:joi.string().email().required(),
-    password: joi.string().pattern(new RegExp("^[a-zA-Z0-9 ]*$")).required().min(8).max(20),
+    password: joi.string().pattern(new RegExp("^[a-zA-Z0-9 ]*$")).required().min(8).max(20).required(),
     repeat_password : joi.ref('password'),
 
-})
+}).with('password' , "repeat_password")
 
 /**
  * *
@@ -20,7 +20,8 @@ const userSchema =  joi.object({
 const validateUser = async (user) => {
 
     try {
-         await userSchema.validateAsync(user);
+        await userSchema.validateAsync(user)
+
         return {"success" : true ,  "message": "user is valid"}
     }catch(error) {
       return   {"success" : false ,  "message": error.toString()}

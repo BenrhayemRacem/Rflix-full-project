@@ -1,20 +1,20 @@
 
-const movieModel = require("../models/movieModel") ;
+
 const movieDao = require("../dao/movie.dao")
 
 
 class movieController {
    static  async getMovieById (req,res) {
        const id = req.params.id ;
-       try{
-           const movie = await movieModel.findById(id) ;
+       const {success , movie} =  await movieDao.getMovieById(id);
+       if(success) {
            if(movie) {
-               res.status(200).send(movie);
+               res.status(200).send(movie)
            } else {
                res.status(404).send("no movie matched your search")
            }
-       }catch (error) {
-           res.status(500).send(error)
+       } else {
+           res.status(500).send("error occurred when searching a movie")
        }
    }
    static async searchMovieByFilter (req,res) {

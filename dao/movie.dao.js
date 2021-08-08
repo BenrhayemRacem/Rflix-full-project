@@ -1,6 +1,17 @@
 const movieModel = require("../models/movieModel") ;
 
 class movieDao {
+    static async getMovieById (id) {
+        try{
+            const movie = await movieModel.findById(id) ;
+
+                return {success : true , movie : movie}
+
+        }catch (error) {
+            console.log("error in finding movie by id" + error)
+            return {success:false , movie:null}
+        }
+    }
     static async getMoviesByTitle(title) {
         try {
             const movieList =   movieModel.find({"title": title}).getQuery();

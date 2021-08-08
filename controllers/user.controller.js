@@ -1,25 +1,19 @@
-const userModel = require("../models/userModel")
+
 const token = require("../services/jwtSign")
+const userDao = require("../dao/user.dao")
 
 class UserController{
-    static  async getOneUserByEmail (email) {
-        const result = await userModel.findOne({"email":email}).exec();
-        if(!result) {
-            return {"success" : false , "user" : result}
-        }
-        return {"success" : true , "user":result}
 
-    }
 
-    static async addJwtToUser (email , username , _id) {
-        const jwt = await token(email,username,_id);
+    static async addJwtToUser (email , isAdmin) {
         try {
+            const jwt = await token(email,isAdmin);
 
-            await userModel.findOneAndUpdate({"email" : email} , {"jwt":jwt} ,{"new":true});
-            return {"success": true};
-        }catch (error) {
-            console.log(error);
-            return {"success":false};
+            const {success} = await userDao.getUserByEmailAndUpdateJwt(email , jwt) ;
+            return {success :success}
+        }catch (e) {
+            console.log("error when generating a jwt" + e) ;
+            return {success:false} ;
         }
 
 
