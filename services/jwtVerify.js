@@ -6,7 +6,7 @@ const jwtVerify = async (req,res,next)=> {
     if(token) {
         try {
             const {email,isAdmin} = await jwt.verify(token , process.env.SECRET_JWT) ;
-            req.infos= {"authEmail":email,isAdmin} ;
+           req.infos= {"authEmail":email,isAdmin} ;
             next();
         }catch (err) {
             res.send(err).status(400)

@@ -16,8 +16,7 @@ class userDao {
     }
     static async getUserByEmail(email) {
         try {
-            const result = await userModel.findOne({"email": email},
-                {username :1 , email:1 , watchLater:1 , favourites:1 , profilePicture:1 , jwt:1}).exec();
+            const result = await userModel.findOne({"email": email}).exec();
 
             return {"success": true, "user": result}
         } catch (e) {
