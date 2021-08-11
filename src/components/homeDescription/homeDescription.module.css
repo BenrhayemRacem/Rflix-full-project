@@ -1,0 +1,21 @@
+
+.introSection {
+    margin-top: 5vh;
+    align-items: center;
+
+}
+
+.introParagraph {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.introButton  a{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+.introButton  {
+   align-self: center;
+}

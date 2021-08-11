@@ -1,0 +1,16 @@
+
+
+.imgContainer {
+    min-height: 100vh;
+    background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/9c5457b8-9ab0-4a04-9fc1-e608d5670f1a/6ba61d0e-de80-4729-9a30-6435e3156f85/TN-fr-20210719-popsignuptwoweeks-perspective_alpha_website_small.jpg");
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+
+}
+
+.titleH1 {
+padding-top: 38vh;
+    font-size:4rem;
+}
+
