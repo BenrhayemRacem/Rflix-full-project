@@ -84,6 +84,23 @@ class movieDao {
 
         }
     }
+    static async getAllMovies (page=0 ,moviePerPage=20 ) {
+        try {
+
+            const searchedList = await movieModel.find({},{title:1 ,year:1,cast:1,runtime:1,plot:1 ,released:1},{sort:{released:-1}}).limit(moviePerPage).skip(moviePerPage * page).exec();
+            if (searchedList.length >= 1) {
+                return {success: true, searchedList: searchedList}
+            }
+
+
+            return {success: true, searchedList: null}
+
+
+        } catch (error) {
+            return {success: false, searchedList: null}
+        }
+    }
+
 }
 
 module.exports = movieDao ;

@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors")
 const app = express();
 require("dotenv").config();
 const mongoose = require("mongoose");
@@ -9,7 +10,7 @@ const movieRouter = require("./routes/movie.route")
 const userRouter = require("./routes/user.route")
 const jwtVerify = require("./services/jwtVerify")
 
-
+app.use(cors({origin:"http://localhost:3000"}))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 

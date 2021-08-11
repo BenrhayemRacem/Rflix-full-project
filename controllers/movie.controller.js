@@ -71,6 +71,25 @@ class movieController {
        }
    }
 
+   static async getAllMovies (req ,res) {
+       let page ;
+       try {
+           page = req.query.page ? parseInt(req.query.page , 10) :0
+       }catch (error){
+           console.log("bad value for page" + e)
+           page=0
+       }
+       const {success , searchedList} = await movieDao.getAllMovies(page) ;
+       if(!success) {
+           res.status(500).send("error while loading movies")
+       } else if (!searchedList) {
+           res.status(404).send("no movies were found")
+       }else {
+           res.status(200).send(searchedList)
+
+       }
+   }
+
 
 }
 
