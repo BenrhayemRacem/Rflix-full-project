@@ -1,0 +1,28 @@
+
+.singleQuestion {
+border: white 1px solid;
+    margin-top: 10px;
+    transition: 1.5s;
+}
+.singleQuestion button {
+    transform: scale(0.8);
+    background-color: transparent;
+    color: white;
+    border: none;
+    margin-left: 10px;
+}
+
+.singleQuestion2 {
+    border: white 1px solid;
+    margin-top: 10px;
+    background-color: rgba(225,225,225,0.8);
+transition: 1.5s;
+    color: black;
+}
+.singleQuestion2 button {
+    transform: scale(0.8);
+    background-color: transparent;
+    color: black;
+    border: none;
+    margin-left: 10px;
+}

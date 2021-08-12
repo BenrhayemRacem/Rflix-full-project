@@ -1,0 +1,15 @@
+
+
+.global {
+    margin-top: 15vh;
+    text-align: center;
+
+
+}
+
+.global img {
+   width: 350px;
+    height: 400px;
+    margin-bottom: 5vh;
+}
+
