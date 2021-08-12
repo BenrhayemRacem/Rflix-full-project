@@ -7,6 +7,7 @@ import {Register} from "../../pages/register/Register";
 import {SingleMovie} from "../../pages/singleMovie/SingleMovie";
 import {Navbars} from "../navbar/Navbar";
 import {Explore} from "../../pages/explore/Explore";
+import {Error} from "../../pages/error/Error";
 
 
 function App() {
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route path="/movie/:id">
             <SingleMovie/>
+        </Route>
+        <Route path="*">
+            <Error/>
         </Route>
     </Switch>
 </HashRouter>
