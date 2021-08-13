@@ -87,7 +87,7 @@ class movieDao {
     static async getAllMovies (page=0 ,moviePerPage=20 ) {
         try {
 
-            const searchedList = await movieModel.find({poster:{$exists:true}},{title:1 , poster:1,year:1,cast:1,runtime:1,plot:1 ,released:1},{sort:{released:-1}}).limit(moviePerPage).skip(moviePerPage * page).exec();
+            const searchedList = await movieModel.find({poster:{$exists:true}  },{title:1 , poster:1,year:1,cast:1,runtime:1,plot:1 ,released:1 },{sort:{"released":-1}}).limit(moviePerPage).skip(moviePerPage * page).exec();
             if (searchedList.length >= 1) {
                 return {success: true, searchedList: searchedList}
             }

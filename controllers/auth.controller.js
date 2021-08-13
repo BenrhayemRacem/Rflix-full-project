@@ -61,7 +61,7 @@ const userDao = require("../dao/user.dao")
                              if(!success) {
                                  res.status(500).send("error while logging in please try again")
                              }else{
-                                 res.status(200).send("logged in")
+                                 res.status(200).send(user.jwt)
                              }
 
                          }

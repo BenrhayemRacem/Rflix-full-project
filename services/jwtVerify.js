@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const jwtVerify = async (req,res,next)=> {
     const token = req.headers.token;
+
     if(token) {
         try {
             const {email,isAdmin} = await jwt.verify(token , process.env.SECRET_JWT) ;

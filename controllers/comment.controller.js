@@ -87,7 +87,7 @@ class CommentController {
         if (!success) {
             res.status(500).send("error in searching comments of a movie");
         } else if( movieList.length >=1) {
-            res.stat(200).send(movieList);
+            res.status(200).send(movieList);
         } else {
             res.status(404).send("no comments matched your search ");
         }
