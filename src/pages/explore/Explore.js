@@ -3,12 +3,14 @@ import {ExploreAllMovies} from "../../components/exploreAllMovies/ExploreAllMovi
 import styles from "./explore.module.css"
 import {useEffect, useState} from "react";
 import {ExplorePagination} from "../../components/explorePagination/ExplorePagination";
+import {useGlobalContext} from "../../globalContext/GlobalContext";
 const axios = require ('axios') ;
 axios.defaults.baseURL = 'http://localhost:5000';
 export const Explore =()=> {
     const[loading , setLoading] = useState(true) ;
     const[movies , setMovies] = useState([]) ;
     const [page, setPage] = useState(0) ;
+    const {alert} = useGlobalContext();
     const changePage = (numPage)=> {
         if(numPage<=0) {
             setPage(0)
@@ -19,6 +21,7 @@ export const Explore =()=> {
         }
 
     }
+
 const getAllMovies =async ()=> {
     try {
         setLoading(true)
@@ -40,7 +43,11 @@ console.log(e)
 useEffect(()=>getAllMovies() ,[page ])
     return(
         <>
+
            <div className={`${styles.global} container`}>
+               <div className={`alert-${alert.variant} alert   `}>
+                   <h2>{alert.message}</h2>
+               </div>
                {loading&& (
                    <div className="row">
                    <Loader/>

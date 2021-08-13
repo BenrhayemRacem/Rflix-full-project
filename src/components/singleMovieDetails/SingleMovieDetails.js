@@ -1,9 +1,10 @@
 
 import styles from "./singleMovieDetails.module.css"
+import {useGlobalContext} from "../../globalContext/GlobalContext";
 
 
 export const SingleMovieDetails = ({movie})=>  {
-    console.log(movie)
+
     const {
     awards ,
         cast ,
