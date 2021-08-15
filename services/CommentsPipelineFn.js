@@ -10,7 +10,7 @@ const getCommentsByMovieIdPipeline = (movieId) => {
                         "$match": { "$expr" : {"$eq" : ["$$userEmail" , "$email"]}}
                     } ,
                     {
-                        "$project" : {"username" :1 , "_id":0}
+                        "$project" : {"username" :1 , "_id":0 , "profilePicture":1}
                     }
                 ],
 

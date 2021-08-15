@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended:true}));
 // Routes
  app.use("/api/auth" , authRouter) ;
 app.use("/api/movie" , movieRouter) ;
- app.use("/api/comment" , jwtVerify, commentRouter) ;
+ app.use("/api/comment"  , commentRouter) ;
  app.use("/api/user" ,userRouter )
 
 
