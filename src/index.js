@@ -6,11 +6,12 @@ import {AppProvider} from "./globalContext/GlobalContext";
 
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
       <AppProvider>
     <App />
       </AppProvider>
-  </React.StrictMode>,
+  // </React.StrictMode>
+,
   document.getElementById('root')
 );
 

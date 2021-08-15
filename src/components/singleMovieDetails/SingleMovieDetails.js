@@ -1,6 +1,6 @@
 
 import styles from "./singleMovieDetails.module.css"
-import {useGlobalContext} from "../../globalContext/GlobalContext";
+
 
 
 export const SingleMovieDetails = ({movie})=>  {

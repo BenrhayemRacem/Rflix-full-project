@@ -3,8 +3,8 @@ import {actions} from "./actions";
 
 const reducer =(state,action) => {
 switch (action.type) {
-    case actions.ALERT_SINGLE_MOVIE :
-        return {...state , alert :{variant :"danger" , message:"movie not found , please try again"}}
+    case actions.ALERT :
+        return {...state , alert :{variant :action.payload.variant , message:action.payload.message}}
     case actions.INIT_ALERT:
         return {...state , alert :{variant: "" , message: ""}}
     case actions.ADD_JWT_LOCAL_STORAGE:

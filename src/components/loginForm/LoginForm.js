@@ -10,7 +10,7 @@ axios.defaults.baseURL = 'http://localhost:5000';
 export const LoginForm = ()=> {
 const [email,setEmail] = useState("") ;
 const [password , setPassword] = useState("") ;
-const {loggingIn} = useGlobalContext();
+const {loggingIn , displayAlerts} = useGlobalContext();
 let history = useHistory();
 const handleSubmit = async (e)=> {
     e.preventDefault();
@@ -19,11 +19,15 @@ const handleSubmit = async (e)=> {
             email:email,
             password:password
         }) ;
+       localStorage.setItem("email" , JSON.stringify(email))
        loggingIn(response.data)
         history.push("/explore")
+        displayAlerts("success" , "logged in successfully")
 
     }catch (e) {
         //TODO : alerts here
+        loggingIn("") ;
+        displayAlerts("danger" , e.response.data)
         console.log( e.response.data)
     }
 }

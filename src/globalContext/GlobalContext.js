@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useReducer} from "react";
-import reducer from "../reducer/Reducer";
+import reducer from "../globalReducer/Reducer";
 import getTokenFromLocalStorage from "../services/getTokenFromLocalStorage";
-import {actions} from "../reducer/actions";
+import {actions} from "../globalReducer/actions";
 
 
 const initialState = {
@@ -14,8 +14,9 @@ const AppContext = React.createContext(null) ;
 
 const AppProvider = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-     const alertSingleMovie = ()=> {
-         dispatch({type:actions.ALERT_SINGLE_MOVIE})
+     const displayAlerts = ( variant , message)=> {
+
+         dispatch({type:actions.ALERT , payload:{variant,message}})
      }
      const loggingIn =(token)=> {
          dispatch({type:actions.LOGGING_IN , payload:token})
@@ -27,6 +28,7 @@ const AppProvider = ({children}) => {
 useEffect( ()=> {
     dispatch({type:actions.ADD_JWT_LOCAL_STORAGE})
 } ,[state.token])
+
      useEffect( ()=> {
          let timeout = setTimeout(()=>dispatch({type:actions.INIT_ALERT}) , 3000)
          return ()=> clearTimeout(timeout)
@@ -36,7 +38,7 @@ useEffect( ()=> {
         <AppContext.Provider
         value={{
             ...state,
-            alertSingleMovie,
+            displayAlerts,
             loggingIn
 
         }}

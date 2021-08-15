@@ -33,6 +33,7 @@ function App() {
             <Explore/>
         </Route>
         <Route path="/movie/:id">
+
             <SingleMovie/>
         </Route>
         <Route path="*">

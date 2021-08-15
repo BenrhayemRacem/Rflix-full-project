@@ -1,11 +1,13 @@
 import {SingleMovieDetails} from "../../components/singleMovieDetails/SingleMovieDetails";
 import {useParams} from "react-router-dom" ;
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {Loader} from "../../components/loader/Loader";
 import styles from "./singleMovie.module.css";
 import {useHistory} from "react-router-dom"
 import {useGlobalContext} from "../../globalContext/GlobalContext";
-import {SingleMovieComments} from "../../components/singleMovieComments/SingleMovieComments";
+import {SingleMovieCommentsSection} from "../../components/singleMovieCommentsSection/SingleMovieCommentsSection";
+import {CommentProvider} from "../../commentContext/CommentContext";
+
 
 
 const axios = require ('axios') ;
@@ -18,41 +20,45 @@ export const SingleMovie =()=> {
     let history = useHistory() ;
     const [movie ,setMovie] = useState({}) ;
     const [loading ,setLoading] = useState(true);
-    const {id} = useParams() ;
-    const {alertSingleMovie , token} = useGlobalContext();
 
+    const {id} = useParams() ;
+    const {displayAlerts , token ,} = useGlobalContext();
+
+    // const fn =useCallback( async ()=> {
+    //     try {
+    //         setLoading(true);
+    //         const response =  await axios.get(`/api/movie/getMovieById/${id}`) ;
+    //         setMovie(response.data)
+    //         setLoading(false)
+    //     } catch (e) {
+    //         console.log ("error in movie id  " + e)
+    //         history.push("/explore")
+    //         displayAlerts("danger", "movie not found please try again") ;
+    //         setMovie(null)
+    //         setLoading(false)
+    //
+    //
+    //     }
+    // } ,[id,displayAlerts,setLoading])
     const getMovie = async () => {
         try {
             setLoading(true);
-            const response =  await axios.get(`/api/movie/getMovieById/${id}`) ;
+            const response = await axios.get(`/api/movie/getMovieById/${id}`);
             setMovie(response.data)
             setLoading(false)
         } catch (e) {
-           console.log ("error in movie id  " + e)
-            alertSingleMovie() ;
+            console.log("error in movie id  " + e)
             history.push("/explore")
+            displayAlerts("danger", "movie not found please try again");
             setMovie(null)
             setLoading(false)
 
 
         }
 
-
     }
 
-    const getComments = async ()=> {
-        try {
-            const response = await axios.get(`/api/comment/getByMovieId/${id}` , {
-                headers : {'token' : token}
-            }) ;
-            console.log(response.data)
-        }catch (e) {
-            console.log(e)
-        }
-    }
-
-    useEffect( async ()=> await getMovie() , [id])
-    useEffect( async ()=> await getComments() , [id])
+    useEffect( async ()=> await getMovie() , [])
     return(
        <>
            <div className="container">
@@ -65,12 +71,15 @@ export const SingleMovie =()=> {
            { !loading && (
                <div className={styles.global}>
                <SingleMovieDetails movie ={movie}/>
+                   <div className="row">
+                       <CommentProvider>
+                       <SingleMovieCommentsSection />
+                       </CommentProvider>
+                   </div>
                </div>
            )}
 
-               <div className="row">
-                   <SingleMovieComments/>
-               </div>
+
            </div>
 
        </>
