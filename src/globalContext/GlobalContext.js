@@ -4,22 +4,38 @@ import getTokenFromLocalStorage from "../services/getTokenFromLocalStorage";
 import {actions} from "../globalReducer/actions";
 
 
+
 const initialState = {
     token :getTokenFromLocalStorage(),
-    alert :{variant: "" , message:""}
+    alert :{variant: "" , message:""},
+    show:false
 }
 
 const AppContext = React.createContext(null) ;
 
 
 const AppProvider = ({children}) => {
+
     const [state, dispatch] = useReducer(reducer, initialState);
      const displayAlerts = ( variant , message)=> {
 
          dispatch({type:actions.ALERT , payload:{variant,message}})
      }
      const loggingIn =(token)=> {
+         console.log(token)
          dispatch({type:actions.LOGGING_IN , payload:token})
+    }
+    const logout = ()=> {
+
+         dispatch({type:actions.LOGOUT})
+
+    }
+
+    const handleShow =()=> {
+         dispatch({type:actions.SET_SHOW})
+    }
+    const handleClose = ()=> {
+         dispatch({type:actions.SET_CLOSE})
     }
 
 
@@ -39,7 +55,10 @@ useEffect( ()=> {
         value={{
             ...state,
             displayAlerts,
-            loggingIn
+            loggingIn ,
+            logout,
+            handleShow,
+            handleClose
 
         }}
         >

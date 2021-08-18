@@ -5,8 +5,10 @@ export const CommentActions = {
     GET_COMMENTS_FROM_DATABASE : "get-comments-from-database",
     INIT_MOVIE_ID :"init-movie-id",
     HANDLE_SUBMIT : "handle-submit",
-    INIT_ALERTS:"init-alerts",
+    DELETE_ALERTS:"delete-alerts",
     ADDED_TO_DB :"added-to-db",
-    ERROR_SUBMITTING_COMMENT :"error-submitting-comment"
+    ERROR_SUBMITTING_COMMENT :"error-submitting-comment",
+    SET_IS_EDITING: "set-is-editing",
+    DELETING_COMMENT : "deleting-comment",
 
 }

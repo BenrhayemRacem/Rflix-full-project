@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useGlobalContext} from "../../globalContext/GlobalContext";
 import {useHistory} from "react-router-dom";
 
@@ -10,9 +10,10 @@ axios.defaults.baseURL = 'http://localhost:5000';
 export const LoginForm = ()=> {
 const [email,setEmail] = useState("") ;
 const [password , setPassword] = useState("") ;
-const {loggingIn , displayAlerts} = useGlobalContext();
+const {loggingIn , displayAlerts , token} = useGlobalContext();
 let history = useHistory();
 const handleSubmit = async (e)=> {
+    console.log("here in logging")
     e.preventDefault();
     try{
        const response =  await axios.post("/api/auth/login" , {
@@ -20,6 +21,7 @@ const handleSubmit = async (e)=> {
             password:password
         }) ;
        localStorage.setItem("email" , JSON.stringify(email))
+        console.log(response.data)
        loggingIn(response.data)
         history.push("/explore")
         displayAlerts("success" , "logged in successfully")
@@ -31,6 +33,12 @@ const handleSubmit = async (e)=> {
         console.log( e.response.data)
     }
 }
+    useEffect(()=> {
+        if(token) {
+            displayAlerts("info" , " you are already logged in")
+            history.push("/explore")
+        }
+    } , [])
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -60,10 +68,7 @@ const handleSubmit = async (e)=> {
                         onChange={(e)=>setPassword(e.target.value)}
                     />
                 </div>
-                <div className="form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
 
-                </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </>

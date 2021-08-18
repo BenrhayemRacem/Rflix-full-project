@@ -8,6 +8,9 @@ import {SingleMovie} from "../../pages/singleMovie/SingleMovie";
 import {Navbars} from "../navbar/Navbar";
 import {Explore} from "../../pages/explore/Explore";
 import {Error} from "../../pages/error/Error";
+import {Sidebar} from "../sidebar/Sidebar";
+import {Profile} from "../../pages/profile/Profile";
+
 
 
 function App() {
@@ -19,6 +22,7 @@ function App() {
 
 <HashRouter>
     <Navbars/>
+
     <Switch>
         <Route exact path ="/">
             <Home/>
@@ -29,6 +33,10 @@ function App() {
         <Route path ="/register">
             <Register/>
         </Route>
+        <Route path ="/profile">
+            <Profile/>
+        </Route>
+
         <Route path="/explore">
             <Explore/>
         </Route>

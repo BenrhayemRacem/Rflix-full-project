@@ -1,11 +1,14 @@
 
 import styles from "./singleMovieDetails.module.css"
+import {HandleWatchLater} from "../handleWatchLater/HandleWatchLater";
+import {Alert} from "../alert/Alert";
 
 
 
 export const SingleMovieDetails = ({movie})=>  {
 
     const {
+        _id,
     awards ,
         cast ,
         countries ,
@@ -42,6 +45,11 @@ export const SingleMovieDetails = ({movie})=>  {
                 <div className="row justify-content-center">
                     <h3> released : {(new Date(released)).toDateString()}</h3>
                 </div>
+            </div>
+            <div className="row">
+                <Alert/>
+                <HandleWatchLater id={_id} list="watchLater"/>
+                <HandleWatchLater id={_id} list="favourites"/>
             </div>
         </div>
 

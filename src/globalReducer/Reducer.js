@@ -12,6 +12,16 @@ switch (action.type) {
         return {...state}
     case actions.LOGGING_IN :
         return {...state , token:action.payload}
+    case actions.LOGOUT :{
+        localStorage.setItem("email",JSON.stringify(""));
+        return {...state , token:""}
+    }
+    case actions.SET_SHOW : {
+        return {...state,show:true}
+    }
+    case actions.SET_CLOSE :{
+        return {...state,show:false}
+    }
 }
 
 }

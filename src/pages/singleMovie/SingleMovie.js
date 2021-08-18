@@ -1,5 +1,5 @@
 import {SingleMovieDetails} from "../../components/singleMovieDetails/SingleMovieDetails";
-import {useParams} from "react-router-dom" ;
+import {Link, useParams,useLocation} from "react-router-dom" ;
 import {useCallback, useEffect, useState} from "react";
 import {Loader} from "../../components/loader/Loader";
 import styles from "./singleMovie.module.css";
@@ -44,6 +44,7 @@ export const SingleMovie =()=> {
         try {
             setLoading(true);
             const response = await axios.get(`/api/movie/getMovieById/${id}`);
+            console.log(response.data)
             setMovie(response.data)
             setLoading(false)
         } catch (e) {
@@ -59,6 +60,7 @@ export const SingleMovie =()=> {
     }
 
     useEffect( async ()=> await getMovie() , [])
+    console.log(useLocation())
     return(
        <>
            <div className="container">
@@ -70,6 +72,11 @@ export const SingleMovie =()=> {
 
            { !loading && (
                <div className={styles.global}>
+                   <div className="row justify-content-start">
+                       <div className="col-5">
+                           <div onClick={()=>history.goBack()}> go back</div>
+                       </div>
+                   </div>
                <SingleMovieDetails movie ={movie}/>
                    <div className="row">
                        <CommentProvider>

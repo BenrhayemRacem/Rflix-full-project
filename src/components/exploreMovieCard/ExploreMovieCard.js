@@ -2,6 +2,8 @@
 import styles from "./exploreMovieCard.module.css"
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import {Alert} from "../alert/Alert";
+import {HandleWatchLater} from "../handleWatchLater/HandleWatchLater";
 
 export const ExploreMovieCard =(props) =>  {
 const {movie} = props ;
@@ -24,6 +26,11 @@ const [hover , setHover] = useState(false);
                 <p>{plot}</p>
                  <div> <button className="btn btn-success" > {runtime} minutes</button> </div>
                 <Link to={`/movie/${_id}`}>  view details</Link>
+                    <div>
+                        <Alert/>
+                        <HandleWatchLater id={_id} list="watchLater"/>
+                        <HandleWatchLater id={_id} list="favourites"/>
+                    </div>
                 </>
             )}
 

@@ -4,8 +4,8 @@ import {useGlobalContext} from "../../globalContext/GlobalContext";
 
 export const CommentForm = ()=> {
 const {token} = useGlobalContext();
-const {commentDescription , handleAddingCommentDescription , isEditing , handleSubmit} = useCommentContext() ;
-const buttonText = isEditing? "edit comment":"add comment"   ;
+const {commentDescription , handleAddingCommentDescription , isEditingAComment , handleSubmit} = useCommentContext() ;
+const buttonText = isEditingAComment? "edit ":"add "   ;
 if(!token) {
     return (
         <h3> please login or sign up to post comments</h3>
