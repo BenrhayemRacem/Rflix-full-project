@@ -61,13 +61,13 @@ class movieController {
 
        if(success) {
            if(!searchedList) {
-               res.send("no movie matched your search")
+               res.status(404).send("no movie matched your search")
            }else {
-               res.send(searchedList)
+               res.status(200).send(searchedList)
            }
 
        }else {
-           res.send(success)
+           res.status(500).send("error while loading movies")
        }
    }
 

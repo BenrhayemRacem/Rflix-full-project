@@ -56,17 +56,20 @@ class movieDao {
     }
 
     static async getMoviesByFilter({filters = null, page = 0, moviePerPage = 10}) {
+
         let queryParams = {}
+        console.log(filters)
         if (filters) {
             if ("title" in filters) {
-                queryParams = this.getMoviesByTitle(filters["title"])
+                queryParams = await this.getMoviesByTitle(filters["title"])
             } else if ("cast" in filters) {
-                queryParams = this.getMoviesByCast(filters["cast"])
+                queryParams =  await this.getMoviesByCast(filters["cast"])
             } else if ("genre" in filters) {
-                queryParams = this.getMoviesByGenres(filters["genre"])
+                queryParams =  await this.getMoviesByGenres(filters["genre"])
             }
             try{
-                const { success=false, movieList =null} = await queryParams;
+                const { success=false, movieList =null} =   queryParams;
+                console.log(queryParams)
                 if(success) {
 
                     const searchedList = await movieModel.find(movieList).limit(moviePerPage).skip(moviePerPage*page).exec();
@@ -83,6 +86,8 @@ class movieDao {
             }
 
         }
+        const allMoviesResponse = await this.getAllMovies(page,moviePerPage);
+        return {success:allMoviesResponse.success ,searchedList: allMoviesResponse.searchedList}
     }
     static async getAllMovies (page=0 ,moviePerPage=20 ) {
         try {

@@ -89,7 +89,7 @@ class CommentController {
         } else if( movieList.length >=1) {
             res.status(200).send(movieList);
         } else {
-            res.status(404).send("no comments matched your search ");
+            res.status(404).send({});
         }
     }
 }

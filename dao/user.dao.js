@@ -24,10 +24,21 @@ class userDao {
             return {success: false, user: null}
         }
     }
+    static async getUserDetails (email) {
+        try{
+            const result = await userModel.findOne({"email": email} ,
+                {"password":0 ,"jwt":0 ,"isAdmin":0 ,"_id":0}).exec()
+            return {"success" : true , "user" :result}
+
+        }catch (e) {
+            console.log("error when searching a user by email" + e);
+            return {success: false, user: null}
+        }
+    }
     static async getUserByEmailAndUpdateJwt (email , jwt) {
         try {
 
-            await userModel.findOneAndUpdate({"email" : email} , {"jwt":jwt} ,  );
+            await userModel.findOneAndUpdate({"email" : email} , {"jwt":jwt} , {new:true}  );
             return {"success": true};
         }catch (error) {
             console.log(error);
@@ -62,6 +73,7 @@ class userDao {
     static async movieExistsInWatchLaterArray (email , movieId) {
 
         const {success , user} = await this.getUserByEmail(email) ;
+
         if(success && user) {
             const found = user.watchLater.find(element => element===movieId);
             return{"success" : true , "found" : found}
