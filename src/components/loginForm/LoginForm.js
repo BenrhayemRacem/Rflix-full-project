@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useGlobalContext} from "../../globalContext/GlobalContext";
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
+import styles from "./loginForm.module.css"
 
 
 
@@ -41,7 +42,8 @@ const handleSubmit = async (e)=> {
     } , [])
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <div className={`container-fluid ${styles.global}`}>
+            <form onSubmit={handleSubmit} >
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
                     <input
@@ -53,8 +55,7 @@ const handleSubmit = async (e)=> {
                         placeholder="Enter email"
                         onChange={(e)=>setEmail(e.target.value)}
                     />
-                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
+
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Password</label>
@@ -69,8 +70,16 @@ const handleSubmit = async (e)=> {
                     />
                 </div>
 
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-danger">Submit</button>
             </form>
+            <div className="row">
+
+                <h4>Don't have an account ? <Link to="/register"> register </Link> </h4>
+
+
+
+            </div>
+            </div>
         </>
     )
 }

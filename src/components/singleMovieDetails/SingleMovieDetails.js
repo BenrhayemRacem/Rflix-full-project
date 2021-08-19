@@ -2,11 +2,12 @@
 import styles from "./singleMovieDetails.module.css"
 import {HandleWatchLater} from "../handleWatchLater/HandleWatchLater";
 import {Alert} from "../alert/Alert";
+import {useGlobalContext} from "../../globalContext/GlobalContext";
 
 
 
 export const SingleMovieDetails = ({movie})=>  {
-
+const {token }= useGlobalContext()
     const {
         _id,
     awards ,
@@ -46,11 +47,18 @@ export const SingleMovieDetails = ({movie})=>  {
                     <h3> released : {(new Date(released)).toDateString()}</h3>
                 </div>
             </div>
-            <div className="row">
-                <Alert/>
-                <HandleWatchLater id={_id} list="watchLater"/>
-                <HandleWatchLater id={_id} list="favourites"/>
-            </div>
+            {token && (
+                <div className="row">
+                    <Alert/>
+                    <div className={`row-cols-6 ${styles.favIcon}`}>
+                        <HandleWatchLater id={_id} list="watchLater"/>
+                    </div>
+                    <div className="row-cols-6">
+                        <HandleWatchLater id={_id} list="favourites"/>
+                    </div>
+                </div>
+            )}
+
         </div>
 
             <div className={`${styles.description} row `}>

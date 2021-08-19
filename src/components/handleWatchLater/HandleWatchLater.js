@@ -2,7 +2,8 @@ import axios from "axios";
 import getEmailFromLocalStorage from "../../services/getEmailFromLocalStorage";
 import {useGlobalContext} from "../../globalContext/GlobalContext";
 import {useEffect, useState} from "react";
-import {Alert} from "../alert/Alert";
+import {BsClock, BsClockFill, BsStar, BsStarFill} from "react-icons/bs";
+
 
 
 export const HandleWatchLater =(props)=> {
@@ -70,16 +71,21 @@ const movieExists = async ()=> {
         }
     }
     }
+
+    if(list==="favourites") {
+        return (
+            <button className={ `btn btn-${exist? "success" :"danger"}`} onClick={()=>{exist? remove():add()}}>
+                {exist ? <BsStarFill/> : <BsStar/>}
+            </button>
+        )
+    }
     return(
         <>
 
-            <h1>{list}</h1>
-            <button onClick={()=>{exist? remove():add()}}>
-                {exist? "remove" : "add"}
+            <button className={ `btn btn-${exist? "success" :"danger"}`} onClick={()=>{exist? remove():add()}}>
+                {exist ? <BsClockFill/> : <BsClock/>}
             </button>
-            {/*<button onClick={()=>remove()}>*/}
-            {/*    remove*/}
-            {/*</button>*/}
+
         </>
     )
 }

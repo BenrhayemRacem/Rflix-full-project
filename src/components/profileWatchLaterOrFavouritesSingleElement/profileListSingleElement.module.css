@@ -1,0 +1,10 @@
+.global img {
+    width:30vw ;
+    height :50vh;
+    cursor: pointer;
+}
+
+.deleteButton {
+transform: translateY(-50vh) translateX(0vw);
+
+}

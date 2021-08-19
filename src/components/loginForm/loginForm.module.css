@@ -1,0 +1,21 @@
+.global {
+    color : black ;
+    margin-top: 10vh;
+    background: #f5f3f4 ;
+    padding: 30px;
+    border: #f5f3f4 5px solid;
+
+}
+.global    a {
+    text-decoration: none;
+    color: black;
+    transition: 1s;
+}
+.global a:hover {
+    border-bottom: #e5383b 1px solid;
+    color:#e5383b;
+}
+
+.global input {
+    margin-bottom: 8px;
+}

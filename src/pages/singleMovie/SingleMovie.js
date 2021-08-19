@@ -1,6 +1,6 @@
 import {SingleMovieDetails} from "../../components/singleMovieDetails/SingleMovieDetails";
-import {Link, useParams,useLocation} from "react-router-dom" ;
-import {useCallback, useEffect, useState} from "react";
+import { useParams,useLocation} from "react-router-dom" ;
+import { useEffect, useState} from "react";
 import {Loader} from "../../components/loader/Loader";
 import styles from "./singleMovie.module.css";
 import {useHistory} from "react-router-dom"
@@ -22,24 +22,9 @@ export const SingleMovie =()=> {
     const [loading ,setLoading] = useState(true);
 
     const {id} = useParams() ;
-    const {displayAlerts , token ,} = useGlobalContext();
+    const {displayAlerts } = useGlobalContext();
 
-    // const fn =useCallback( async ()=> {
-    //     try {
-    //         setLoading(true);
-    //         const response =  await axios.get(`/api/movie/getMovieById/${id}`) ;
-    //         setMovie(response.data)
-    //         setLoading(false)
-    //     } catch (e) {
-    //         console.log ("error in movie id  " + e)
-    //         history.push("/explore")
-    //         displayAlerts("danger", "movie not found please try again") ;
-    //         setMovie(null)
-    //         setLoading(false)
-    //
-    //
-    //     }
-    // } ,[id,displayAlerts,setLoading])
+
     const getMovie = async () => {
         try {
             setLoading(true);
@@ -71,11 +56,14 @@ export const SingleMovie =()=> {
            )}
 
            { !loading && (
-               <div className={styles.global}>
-                   <div className="row justify-content-start">
-                       <div className="col-5">
-                           <div onClick={()=>history.goBack()}> go back</div>
-                       </div>
+               <div className={`${styles.global} container `}>
+                   <div  className={` row-cols-6 ${styles.goBack}`}>
+                            <button
+                                className=" btn-danger btn btn-lg"
+                               onClick={()=>history.goBack()}
+
+                           > go back</button>
+
                    </div>
                <SingleMovieDetails movie ={movie}/>
                    <div className="row">

@@ -1,8 +1,8 @@
-import React, {useCallback, useContext, useEffect, useMemo, useReducer} from "react";
+import React, {useCallback, useContext, useEffect,  useReducer} from "react";
 import commentReducer from "../commentReducer/CommentReducer";
 import {CommentActions} from "../commentReducer/CommentActions";
 import {useGlobalContext} from "../globalContext/GlobalContext";
-import getComments from "../services/axios/getComments";
+
 import axios from "axios";
 import getEmailFromLocalStorage from "../services/getEmailFromLocalStorage";
 
@@ -48,15 +48,7 @@ const CommentProvider = ({children}) => {
     }
 
 
-   // useEffect( ()=> {
-   //     console.log(state.commentDescription ==="")
-   //     if (state.commentDescription ==="") {
-   //         displayAlerts("danger" , "hello")
-   //     }
-   //     }
-   //
-   //
-   //     , [state.commentDescription])
+
     useEffect(()=> {
 console.log(state.alert)
         displayAlerts(state.alert.variant , state.alert.message)
@@ -75,7 +67,7 @@ console.log(state.alert)
 
         }catch (e) {
             console.log(e) ;
-            // dispatch({type:CommentActions.DELETING_COMMENT  , payload: {variant:"danger" ,message:e.response.data}})
+
             dispatch({type:CommentActions.GET_COMMENTS_FROM_DATABASE  ,payload: {}})
 
         }
@@ -88,23 +80,7 @@ console.log(state.alert)
     } , [fn])
 
 
-    // useEffect(  async ()=> {
-    //     // if(state.movieId==="") {
-    //     //
-    //     // }else {
-    //     //     try{
-    //     //         const response = await axios.get(`/api/comment/getByMovieId/${state.movieId}`);
-    //     //         console.log(response.data)
-    //     //        await dispatch({type:CommentActions.GET_COMMENTS_FROM_DATABASE  , payload:response.data})
-    //     //     }catch (e) {
-    //     //         console.log(e) ;
-    //     //         dispatch({type:CommentActions.GET_COMMENTS_FROM_DATABASE  , payload: {}})
-    //     //     }
-    //     //
-    //     // }
-    // await fn()
-    //
-    // } , [fn ])
+
 
 
     useEffect( async ()=> {

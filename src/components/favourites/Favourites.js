@@ -1,8 +1,5 @@
 import axios from "axios";
 import {useCallback, useEffect, useState} from "react";
-import {ExploreAllMovies} from "../exploreAllMovies/ExploreAllMovies";
-import {data} from "../homeJoinUs/data";
-import {useGlobalContext} from "../../globalContext/GlobalContext";
 import {ProfileWatchLaterOrFavouritesList} from "../profileWatchLaterOrFavouritesList/ProfileWatchLaterOrFavouritesList";
 import {Alert} from "../alert/Alert";
 
@@ -36,14 +33,9 @@ console.log(`${listType}   ${favourites}`)
 
     useEffect(   ()=> fn() , [fn])
 
-    //  const fn =useCallback(async ()=>{
-    //     await getMovies()
-    // },[favourites ,movieList])
-    // useEffect( ()=> fn() , [fn])
-
     return(
         <>
-            <Alert/>
+
         <ProfileWatchLaterOrFavouritesList favouriteMovieList={movieList} list={listType} forceFetch={forceFetch}/>
             </>
     )

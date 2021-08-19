@@ -1,15 +1,26 @@
 import {ProfileInfos} from "../../components/profileInfos/ProfileInfos";
 import {Favourites} from "../../components/favourites/Favourites";
-import {WatchLater} from "../../components/watchLater/WatchLater";
 import axios from "axios";
 import getEmailFromLocalStorage from "../../services/getEmailFromLocalStorage";
 import {useEffect, useState} from "react";
+import {useGlobalContext} from "../../globalContext/GlobalContext";
+import {useHistory} from "react-router-dom";
+import styles from "./profile.module.css"
+import {Alert} from "../../components/alert/Alert";
 
 
 export const Profile = ()=> {
     const localEmail =getEmailFromLocalStorage() ;
     const [user ,setUser] =useState({}) ;
     const [refresh , setRefresh] = useState(false) ;
+    const {token ,displayAlerts} = useGlobalContext();
+    const history = useHistory() ;
+    useEffect(()=> {
+        if(!token) {
+            displayAlerts("info" , " please login or create an account")
+            history.push("/login")
+        }
+    } , [])
     const forceFetch = ()=> {
         setRefresh(true);
     }
@@ -38,7 +49,7 @@ export const Profile = ()=> {
     } , [])
     return(
         <>
-        <div className="container">
+        <div className={`${styles.global} container `}>
             {user && (
                 <>
                 <ProfileInfos
@@ -48,13 +59,15 @@ export const Profile = ()=> {
                     createdAt={createdAt}
                     updatedAt={updatedAt}
                 />
-                    {favourites && (
+                    <Alert/>
+                    {favourites && favourites.length>0 && (
                         <Favourites favourites={favourites} forceFetch={forceFetch} listType="favourites"/>
                     )}
 
-                    {watchLater && (
+                    {watchLater &&  watchLater.length>0 &&(
                         <Favourites favourites={watchLater} forceFetch={forceFetch} listType="watchLater"/>
                     )}
+
 
                 </>
             )}

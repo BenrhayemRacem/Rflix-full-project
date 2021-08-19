@@ -112,11 +112,13 @@ useEffect(async ()=> await getAllMovies() ,[page , searchPage ,searchAction , ma
                    <>
                        <div className="row justify-content-end">
                        <div className="col-2">
-                       <button onClick={()=>handleShow()}> <FiSearch/></button>
+                       <button className="btn btn-danger btn-lg" onClick={()=>handleShow()}> <FiSearch/></button>
                        </div>
                        </div>
                        {mainPage===false && (
-                           <button onClick={()=>handleInitMainPage()} > go to main page</button>
+                           <div className="col-lg-5 col-md-10" style={{marginBottom:15}}>
+                           <button className="btn btn-danger btn-lg" onClick={()=>handleInitMainPage()} > go back to main page</button>
+                           </div>
                        )}
                    <div className="row justify-content-center">
                        <ExplorePagination page={correctPage} changePage={changePage}/>

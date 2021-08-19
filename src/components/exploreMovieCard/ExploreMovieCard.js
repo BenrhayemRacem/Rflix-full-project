@@ -1,15 +1,17 @@
 
 import styles from "./exploreMovieCard.module.css"
 import {useState} from "react";
-import {Link} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import {Alert} from "../alert/Alert";
 import {HandleWatchLater} from "../handleWatchLater/HandleWatchLater";
+import {useGlobalContext} from "../../globalContext/GlobalContext";
 
 export const ExploreMovieCard =(props) =>  {
 const {movie} = props ;
 const { _id ,title ,year ,poster  , runtime , plot} = movie ;
 const [hover , setHover] = useState(false);
-
+const history = useHistory();
+const {token} = useGlobalContext()
 
     return (
 
@@ -19,17 +21,24 @@ const [hover , setHover] = useState(false);
             onMouseLeave={()=>setHover(false)}
         >
 
-            <img src={poster} alt=" movie poster" className="img-thumbnail"/>
+            <img src={poster} alt=" movie poster" className="img-thumbnail"
+            onClick={()=>history.push(`/movie/${_id}`)}
+            />
             {!hover && (<h3> {title} ({year})</h3>)}
             {hover && (
                 <>
                 <p>{plot}</p>
-                 <div> <button className="btn btn-success" > {runtime} minutes</button> </div>
-                <Link to={`/movie/${_id}`}>  view details</Link>
+                 <div> <button className="btn btn-danger" > {runtime} minutes</button> </div>
+
                     <div>
                         <Alert/>
-                        <HandleWatchLater id={_id} list="watchLater"/>
-                        <HandleWatchLater id={_id} list="favourites"/>
+                        {token && (
+                            <div className={styles.hoverIcons}>
+                                <HandleWatchLater id={_id} list="watchLater"/>
+                                <HandleWatchLater id={_id} list="favourites"/>
+                            </div>
+                        )}
+
                     </div>
                 </>
             )}

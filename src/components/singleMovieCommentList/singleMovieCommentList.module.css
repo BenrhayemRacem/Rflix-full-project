@@ -1,0 +1,7 @@
+.global {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.global button {
+    margin: 5px;
+}

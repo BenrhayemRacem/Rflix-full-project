@@ -1,20 +1,21 @@
 import {Container, Nav, Navbar} from "react-bootstrap";
 import {Link, useHistory} from "react-router-dom";
 import {useGlobalContext} from "../../globalContext/GlobalContext";
-import {FiSearch} from "react-icons/fi";
+import styles from "./navbar.module.css"
+
 
 
  export const Navbars = ()=> {
-const {token ,logout ,handleShow} =useGlobalContext() ;
+const {token ,logout } =useGlobalContext() ;
 const history = useHistory()
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="light" expand="lg" className={styles.navbarStyle}>
             <Container>
                 <Navbar.Brand href="#">Rflix</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Link to="/">Home</Link>
+                    <Nav className={`me-auto ${styles.inNavLinks}`}>
+                        <Link to="/" >Home</Link>
                         <Link to="/explore">Explore</Link>
 
 
@@ -23,27 +24,29 @@ const history = useHistory()
 
                     {!token && (
                         <>
-                            <button>
+                                <div className={styles.outNavLinks}>
                                 <Link to="/login">
                                     login
                                 </Link>
-                            </button>
-                            <button>
+                                </div>
+                                <div className={styles.outNavLinks}>
                                 <Link to="/register">
                                     Register
                                 </Link>
-                            </button>
+                                </div>
                         </>
                     )}
                     {token && (
                         <>
+                            <div className={styles.outNavLinks}>
                             <Link to="/profile"> profile</Link>
-                        <button onClick={()=>{
-                            console.log("logging out");
+                            </div>
+                        <div  className={styles.logout} onClick={()=>{
+
                             history.push("/");
                             logout();
 
-                        }} >Logout</button>
+                        }} >Logout</div>
 
                         </>
                     )}

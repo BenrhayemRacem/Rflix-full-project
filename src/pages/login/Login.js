@@ -10,7 +10,7 @@ export const Login =()=> {
 
     return(
         <>
-    <div className="container col-6 justify-content-center">
+    <div className="container col-7 justify-content-center">
         <Alert/>
         <LoginForm/>
     </div>

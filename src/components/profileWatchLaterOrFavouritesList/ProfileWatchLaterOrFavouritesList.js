@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import useWindowDimensions from "../windowDimensions/WindowDimensions";
-import {ProfileWatchLaterOrFavouritesSingleElement} from "../../profileWatchLaterOrFavouritesSingleElement/ProfileWatchLaterOrFavouritesSinglleElement";
+import {ProfileWatchLaterOrFavouritesSingleElement} from "../profileWatchLaterOrFavouritesSingleElement/ProfileWatchLaterOrFavouritesSinglleElement";
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa";
+import styles from "./profileList.module.css"
 
 
 export const ProfileWatchLaterOrFavouritesList =(props)=> {
@@ -61,9 +62,10 @@ export const ProfileWatchLaterOrFavouritesList =(props)=> {
 if(numberElements===3) {
     return (
         <>
+            <div className={`${styles.global } container-fluid justify-content-center`}>
             <h1>{list}</h1>
             <div className="row">
-                <div className="col-1">
+                <div className={`${styles.chevron} col-1`}>
                     <button
                     onClick={handlePrev}
                     className={`${prevIsDisabled} btn btn-danger`}
@@ -74,7 +76,7 @@ if(numberElements===3) {
             {slicedList.map((element)=> <div  key={element._id} className="col">
                 <ProfileWatchLaterOrFavouritesSingleElement singleItem={element} list={list}  forceFetch={forceFetch}/>
             </div>)}
-                <div className="col-1">
+                <div className={`${styles.chevron} col-1`}>
                     <button
                         onClick={handleNext}
                         className={`${nextIsDisabled} btn btn-danger`}
@@ -84,15 +86,17 @@ if(numberElements===3) {
                 </div>
 
             </div>
+            </div>
         </>
     )
 
 }
 return (
     <>
+        <div className={`${styles.global } container-fluid justify-content-center`}>
         <h1>{list}</h1>
         <div className="row justify-content-center">
-            <div className="col-1">
+            <div className={`${styles.chevron} col-1`}>
                 <button
                     onClick={handlePrev}
                     className={`${prevIsDisabled} btn btn-danger`}
@@ -103,7 +107,7 @@ return (
             {slicedList.map((element)=> <div  key={element._id} className="col">
                 <ProfileWatchLaterOrFavouritesSingleElement singleItem={element}  list={list} forceFetch={forceFetch}/>
             </div>)}
-            <div className="col-1">
+            <div className={`${styles.chevron} col-1`}>
                 <button
                     onClick={handleNext}
                     className={`${nextIsDisabled} btn btn-danger`}
@@ -112,6 +116,7 @@ return (
                     <FaChevronRight/>
                 </button>
             </div>
+        </div>
         </div>
     </>
 )

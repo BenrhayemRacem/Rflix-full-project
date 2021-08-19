@@ -1,7 +1,5 @@
 import {CommentActions} from "./CommentActions";
-import addComment from "../services/axios/addComment";
-import axios from "axios";
-import getEmailFromLocalStorage from "../services/getEmailFromLocalStorage";
+
 
 
 const commentReducer =   (state,action) => {
@@ -26,14 +24,7 @@ switch(action.type) {
            return {...state , alert:{variant:"warning" , message:"cannot add an empty comment"} }
 
        } else {
-//            console.log("adding")
-//
-//             addComment(action.payload.token, state.movieId, state.commentDescription)
-//                 .then(r => { console.log(r)
-//                     return {...state , alert:{variant: "success" , message: "added successfully"} ,commentDescription:""}
-//                 })
-//                 .catch(e=> console.log(e.response.data))
-// console.log("added")
+
           return {...state , isSubmitting: true  }
 
        }

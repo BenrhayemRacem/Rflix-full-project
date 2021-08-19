@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {useGlobalContext} from "../../globalContext/GlobalContext";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
+import styles from "../loginForm/loginForm.module.css"
 
 
 export const RegisterForm =()=> {
@@ -49,7 +50,7 @@ export const RegisterForm =()=> {
                         displayAlerts("success" , "logged in successfully")
 
                     }catch (e) {
-                        //TODO : alerts here
+
                         loggingIn("") ;
                         displayAlerts("danger" , e.response.data)
                         console.log( e.response.data)
@@ -81,6 +82,8 @@ export const RegisterForm =()=> {
     } , [])
     return(
         <>
+            <div className={` container col-6 ${styles.global}`}>
+
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label >Username</label>
@@ -92,8 +95,7 @@ export const RegisterForm =()=> {
                         placeholder="Enter username"
                         onChange={(e)=>setUsername(e.target.value)}
                     />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone
-                        else.</small>
+
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
@@ -134,13 +136,15 @@ export const RegisterForm =()=> {
                         onChange={(e)=>setRepeatPassword(e.target.value)}
                     />
                 </div>
-                <div className="form-check">
+                <div className="form-group">
 
                     <input type="checkbox"  onChange={handleChange} checked={checked}/>
-                    <label >  keep me logged in </label>
+                    <label >  &nbsp; keep me logged in </label>
                 </div>
-                <button type="submit" className={`btn btn-primary ${disabled}`}>Submit</button>
+                <button type="submit" className={`btn btn-danger ${disabled}`}>Submit</button>
             </form>
+
+            </div>
         </>
     )
 

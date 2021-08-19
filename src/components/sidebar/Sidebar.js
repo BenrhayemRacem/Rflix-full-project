@@ -1,14 +1,12 @@
 
-import {useState} from "react";
+
 
 import {Offcanvas} from "react-bootstrap";
 import {useGlobalContext} from "../../globalContext/GlobalContext";
-
+import styles from "./sidebar.module.css"
 
 export const Sidebar = (props)=> {
    const {show ,handleClose } =useGlobalContext() ;
-   const [searchValue ,setSearchValue] = useState("") ;
-   // const [searchText , setSearchText] =useState("") ;
    const {handleSearchTextChange ,handleSearchValueChange,searchText,setSearchAction} = props ;
     const handleSubmit =(event)=> {
         event.preventDefault()
@@ -16,7 +14,7 @@ export const Sidebar = (props)=> {
 
     }
     return(
-        <Offcanvas show={show} onHide={handleClose} placement="end" >
+        <Offcanvas show={show} onHide={handleClose} placement="end" className={styles.global} >
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Search for your favorite movie</Offcanvas.Title>
             </Offcanvas.Header>
@@ -30,7 +28,7 @@ export const Sidebar = (props)=> {
                             value="genre"
                             onChange={()=>handleSearchValueChange("genre")}
                                />
-                            <label htmlFor="huey">Genre</label>
+                            <label htmlFor="huey"> &nbsp; Genre</label>
                     </div>
 
                     <div>
@@ -41,7 +39,7 @@ export const Sidebar = (props)=> {
                             value="cast"
                             onChange={()=>handleSearchValueChange("cast")}
                         />
-                            <label htmlFor="dewey">Cast</label>
+                            <label htmlFor="dewey">&nbsp; Cast</label>
                     </div>
 
                     <div>
@@ -52,7 +50,7 @@ export const Sidebar = (props)=> {
                             value="title"
                             onChange={()=>handleSearchValueChange("title")}
                         />
-                            <label htmlFor="louie">Title</label>
+                            <label htmlFor="louie">&nbsp; Title</label>
                     </div>
                         <div>
                             <input
@@ -62,7 +60,7 @@ export const Sidebar = (props)=> {
                                 onChange={(e)=>handleSearchTextChange(e.target.value)}
                             />
                         </div>
-                    <button type="submit"> submit</button>
+                    <button type="submit" className="btn btn-danger btn-lg"> submit</button>
                 </form>
             </Offcanvas.Body>
         </Offcanvas>
