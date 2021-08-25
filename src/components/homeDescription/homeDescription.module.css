@@ -1,0 +1,33 @@
+
+.introSection {
+    margin-top: 5vh;
+    align-items: center;
+border-bottom: grey solid 5px;
+    padding-bottom: 10vh;
+}
+
+.introParagraph {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.introButton  a{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+.introButton  {
+   align-self: center;
+    border-radius: 12px;
+    transition: 1s;
+    transform: scale(1.2);
+}
+.introButton:hover {
+    transform: scale(1.5);
+}
+.chevron {
+    transform: scale(1.5);
+    padding-left: 2px;
+}
+

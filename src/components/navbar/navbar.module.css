@@ -1,0 +1,30 @@
+.navbarStyle a{
+    text-decoration: none;
+
+    color: #000000;
+    border: none;
+
+
+}
+.inNavLinks a  ,.logout ,.outNavLinks a {
+    font-family: 'Andada Pro', serif;
+    font-size:1.2rem ;
+    transition: 1s;
+    margin-right: 20px;
+
+}
+.logout{
+    cursor: pointer;
+}
+
+.inNavLinks a:hover  ,.logout:hover {
+    color :#FF2626;
+    border-bottom: 2px solid #FF2626;
+}
+.outNavLinks a:hover {
+    color :#FF2626;
+}
+.outNavLinks:hover {
+    border-bottom: 2px solid #FF2626;
+}
+

@@ -1,0 +1,21 @@
+.loader {
+font-size: 3rem;
+    text-align: center;
+    color : #00ff0a ;
+    box-shadow: 0 0 20px #00ff0a,
+                0 0 40px #00ff0a;
+    width: 50vw;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30vh;
+    animation: animationColor 3s infinite linear;
+
+}
+@keyframes animationColor {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}

@@ -1,0 +1,7 @@
+.global {
+    color: white;
+}
+
+.global img {
+    cursor: pointer;
+}

@@ -1,0 +1,9 @@
+.global {
+    color: white;
+    text-align: center;
+
+}
+.goBack {
+    transform: translateX(-25vw) translateY(10vh);
+}
+

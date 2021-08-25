@@ -1,0 +1,13 @@
+.global {
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+    margin: auto;
+    padding-top: 10vh;
+
+}
+
+.global p {
+    font-size: 1.5rem;
+}
+

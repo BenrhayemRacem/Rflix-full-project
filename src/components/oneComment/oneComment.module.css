@@ -1,0 +1,15 @@
+.profilePic  img {
+    height: 20vh;
+}
+.global {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    border :5px solid #b1a7a6;
+    padding: 5px;
+    transition: 1s;
+}
+
+.global:hover {
+    background-color: white;
+    color: black;
+}
